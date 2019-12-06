@@ -31,5 +31,6 @@
 *.out
 *.app
 
-# Builds
-_build/*
+*build*
+.idea
+.vs
