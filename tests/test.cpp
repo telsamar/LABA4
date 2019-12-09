@@ -1,157 +1,203 @@
+// Copyright 2019 <Kondr11>
 #include <gtest/gtest.h>
-#include <StackNotCopyable.h>
+#include "BrokerResolver.h"
 
-#include "Stack.h"
+TEST(BrokerFile, DirectoriesToString)
+{
+    BrokerFile brokerFile{
+            "filename",
+            {"dir1", "dir2"}
+    };
 
+    EXPECT_EQ(brokerFile.directoriesToString(), "dir1 dir2");
+}
 
-class StackFixture: public ::testing::Test
+TEST(BrokerFile, Equal)
+{
+    BrokerFile brokerFile{
+            "filename",
+            {"dir1", "dir2"}
+    };
+    BrokerFile equalBrokerFile{
+            "filename",
+            {"dir1", "dir2"}
+    };
+    BrokerFile notEqualBrokerFile{
+            "filename",
+            {"dir1", "dir2", "dir3"}
+    };
+
+    EXPECT_EQ(brokerFile, equalBrokerFile);
+    EXPECT_EQ(brokerFile == notEqualBrokerFile, false);
+}
+
+TEST(BrokerDataPair, Equal)
+{
+    BrokerData::Pair pair{"broker", 500};
+    BrokerData::Pair equalPair{"broker", 500};
+    BrokerData::Pair notEqualPair{"_____", 500};
+
+    EXPECT_EQ(pair, equalPair);
+    EXPECT_EQ(pair == notEqualPair, false);
+}
+
+TEST(BrokerDataPair, Hash)
+{
+    BrokerData::Pair pair{"broker", 500};
+    size_t hash = BrokerData::Pair::Hash{}(pair);
+
+    EXPECT_NE(hash, 0);
+}
+
+TEST(BrokerResolver, SetIfMoreBad)
+{
+    int left = 9;
+    BrokerResolver::setIfMore(left, 5);
+    EXPECT_EQ(left, 9);
+}
+
+TEST(BrokerResolver, SetIfMore)
+{
+    int left = 9;
+    BrokerResolver::setIfMore(left, 10);
+    EXPECT_EQ(left, 10);
+}
+
+class BrokerResolverFixture: public ::testing::Test
 {
 protected:
-    struct Copyable
-    {
-        Copyable() = default;
-        Copyable(const Copyable &) = default;
-        Copyable(Copyable &&) = default;
-
-        int value = 0;
-    };
-
-    struct NotCopyable
-    {
-        NotCopyable() = default;
-        NotCopyable(const NotCopyable &) = delete;
-        NotCopyable(NotCopyable &&) = default;
-
-        int value = 0;
-    };
-
-    Stack<Copyable> copyableStack{};
-    Stack<Copyable> copyableStackEmpty{};
-    StackNotCopyable<NotCopyable> notCopyableStack{};
-    StackNotCopyable<NotCopyable> notCopyableStackEmpty{};
-    Stack<std::string> stringStackEmpty{};
+    BrokerResolver resolver;
+    BrokerResolver::DataCollection data;
+    BrokerResolver::Collection files;
 
     void SetUp() override
     {
-        copyableStack.push({1});
-        copyableStack.push({2});
-        copyableStack.push({3});
-        copyableStack.push({4});
-        copyableStack.push({5});
-
-        notCopyableStack.push({1});
-        notCopyableStack.push({2});
-        notCopyableStack.push({3});
-        notCopyableStack.push({4});
-        notCopyableStack.push({5});
-    }
-
-    void TearDown() override
-    {
-
+        resolver.resolve("../tests/data");
+        files = resolver.getFileCollection();
+        data = resolver.getDataCollection();
     }
 };
 
-TEST_F(StackFixture, TestForTest)
+TEST_F(BrokerResolverFixture, GetFiles)
 {
-    EXPECT_EQ(std::is_move_constructible_v<Copyable>, true);
-    EXPECT_EQ(std::is_copy_constructible_v<Copyable>, true);
-
-    EXPECT_EQ(std::is_move_constructible_v<NotCopyable>, true);
-    EXPECT_EQ(std::is_copy_constructible_v<NotCopyable>, false);
+    EXPECT_NE(
+            std::find(
+                    files.cbegin(),
+                    files.cend(),
+                    BrokerFile{
+                            "balance_00001234_20181001.txt",
+                            {"dir"}
+                    }), files.cend() );
+    EXPECT_NE(
+            std::find(
+                    files.cbegin(),
+                    files.cend(),
+                    BrokerFile{
+                            "balance_00001234_20181007.txt",
+                            {"dir"}
+                    }), files.cend());
 }
 
-TEST_F(StackFixture, Constructors)
+TEST_F(BrokerResolverFixture, GetFilesNestedDir)
 {
-    EXPECT_EQ(std::is_move_constructible_v<Stack<int>>, true);
-    EXPECT_EQ(std::is_copy_constructible_v<Stack<int>>, false);
-    EXPECT_EQ(std::is_move_assignable_v<Stack<int>>, true);
-    EXPECT_EQ(std::is_copy_assignable_v<Stack<int>>, false);
+    EXPECT_NE(
+            std::find(
+                    files.cbegin(),
+                    files.cend(),
+                    BrokerFile{
+                            "balance_00001234_20181005.txt",
+                            {"dir", "nested_dir"}
+                    }), files.cend());
 }
 
-TEST_F(StackFixture, PushMove)
+TEST_F(BrokerResolverFixture, GetFilesSymlinkFile)
 {
-    std::string string{"I am a string"};
-    stringStackEmpty.push(std::move(string));
-
-    EXPECT_EQ(stringStackEmpty.head(), std::string{"I am a string"});
+    EXPECT_NE(
+            std::find(
+                    files.cbegin(),
+                    files.cend(),
+                    BrokerFile{
+                            "balance_00001234_20181010.txt",
+                            {"dir"}
+                    }),  files.cend());
 }
 
-TEST_F(StackFixture, PushCopy)
+TEST_F(BrokerResolverFixture, GetFilesSymlinkDir)
 {
-    Copyable copyable{60};
-    copyableStackEmpty.push(copyable);
-
-    EXPECT_EQ(copyableStackEmpty.head().value, 60);
+    EXPECT_NE(
+            std::find(
+                    files.cbegin(),
+                    files.cend(),
+                    BrokerFile{
+                            "balance_00001234_20181001.txt",
+                            {"new_dir"}
+                    }), files.cend());
+    EXPECT_NE(
+            std::find(
+                    files.cbegin(),
+                    files.cend(),
+                    BrokerFile{
+                            "balance_00001234_20181007.txt",
+                            {"new_dir"}
+                    }), files.cend());
 }
 
-TEST_F(StackFixture, PushEmplace)
+TEST_F(BrokerResolverFixture, GetFilesNoOld)
 {
-    notCopyableStackEmpty.push_emplace(600);
-
-    EXPECT_EQ(notCopyableStackEmpty.head().value, 600);
+    EXPECT_EQ(
+            std::find(
+                    files.cbegin(),
+                    files.cend(),
+                    BrokerFile{
+                            "balance_00001235_20190505.old.txt",
+                            {"dir"}
+                    }), files.cend());
+    EXPECT_EQ(
+            std::find(
+                    files.cbegin(),
+                    files.cend(),
+                    BrokerFile{
+                            "balance_00001235_20190505.old.txt",
+                            {"new_dir"}
+                    }), files.cend() );
 }
 
-TEST_F(StackFixture, PopSfinaeNotCopy)
-{
-    using PopType = decltype(notCopyableStack.pop());
-    constexpr bool isSame = std::is_same_v<PopType, NotCopyable>;
 
-    EXPECT_EQ(isSame, true);
+TEST_F(BrokerResolverFixture, DataCollection)
+{
+    auto iterator = data.find({"dir", 1234});
+    ASSERT_NE(iterator, data.cend());
+
+    EXPECT_EQ(iterator->second.files, 3);
+    EXPECT_EQ(iterator->second.lastDate, "20181010");
 }
 
-TEST_F(StackFixture, PopSfinaeCopy)
+TEST_F(BrokerResolverFixture, DataCollectionNested)
 {
-    using PopType = decltype(copyableStack.pop());
-    constexpr bool isSame = std::is_same_v<PopType, void>;
+    auto iterator = data.find({"dir nested_dir", 1234});
+    ASSERT_NE(iterator, data.cend());
 
-    EXPECT_EQ(isSame, true);
+    EXPECT_EQ(iterator->second.files, 1);
+    EXPECT_EQ(iterator->second.lastDate, "20181005");
 }
 
-TEST_F(StackFixture, PopCopy)
+TEST_F(BrokerResolverFixture, DataCollectionSymlink)
 {
-    EXPECT_EQ(copyableStack.head().value, 5);
+    auto iterator = data.find({"new_dir", 1234});
+    ASSERT_NE(iterator, data.cend());
 
-    copyableStack.pop();
-
-    EXPECT_EQ(copyableStack.head().value, 4);
+    EXPECT_EQ(iterator->second.files, 3);
+    EXPECT_EQ(iterator->second.lastDate, "20181010");
 }
 
-TEST_F(StackFixture, PopNotCopy)
+TEST_F(BrokerResolverFixture, DataCollectionWrongExtension)
 {
-    EXPECT_EQ(notCopyableStack.head().value, 5);
-
-    NotCopyable value = notCopyableStack.pop();
-
-    EXPECT_EQ(notCopyableStack.head().value, 4);
-    EXPECT_EQ(value.value, 5);
-}
-
-TEST_F(StackFixture, Head)
-{
-    EXPECT_EQ(copyableStack.head().value, 5);
-}
-
-TEST_F(StackFixture, PopEmpty)
-{
-    EXPECT_THROW(
-        copyableStackEmpty.pop(),
-        StackException
-    );
-}
-
-TEST_F(StackFixture, PopEmptyNotCopyable)
-{
-    EXPECT_THROW(
-        notCopyableStackEmpty.pop(),
-        StackException
-    );
-}
-
-TEST_F(StackFixture, HeadEmpty)
-{
-    EXPECT_THROW(
-        copyableStackEmpty.head(),
-        StackException
-    );
+    EXPECT_EQ(
+            std::find(
+                    files.cbegin(),
+                    files.cend(),
+                    BrokerFile{
+                            "balance_00001459_20191011.yml",
+                            {"dir", "nested_dir"}
+                    }), files.cend());
 }

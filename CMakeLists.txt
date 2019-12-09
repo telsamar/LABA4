@@ -14,51 +14,67 @@ set(
 include("tools/gate/cmake/HunterGate.cmake")
 
 HunterGate(
-  URL "https://github.com/ruslo/hunter/archive/v0.23.214.tar.gz"
-  SHA1 "e14bc153a7f16d6a5eeec845fb0283c8fad8c358"
+        URL "https://github.com/ruslo/hunter/archive/v0.23.214.tar.gz"
+        SHA1 "e14bc153a7f16d6a5eeec845fb0283c8fad8c358"
 )
 
-project(Stack)
+project(lab-04-boost-filesystem)
 string(APPEND CMAKE_CXX_FLAGS " -pedantic -Werror -Wall -Wextra")
 string(APPEND CMAKE_CXX_FLAGS " -Wno-unused-command-line-argument")
 string(APPEND CMAKE_CXX_FLAGS " -Wshadow -Wnon-virtual-dtor")
 
 hunter_add_package(GTest)
+hunter_add_package(Boost COMPONENTS filesystem regex)
 find_package(GTest CONFIG REQUIRED)
-find_package(Threads REQUIRED)
+find_package(Boost CONFIG REQUIRED filesystem regex)
+find_package(Threads)
 
 add_library(
-  ${PROJECT_NAME}
-  STATIC
-  ${CMAKE_CURRENT_SOURCE_DIR}/sources/Stack.cpp
+        ${PROJECT_NAME}
+        ${CMAKE_CURRENT_SOURCE_DIR}/sources/main.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/sources/BrokerResolver.cpp
+)
+target_link_libraries(
+        ${PROJECT_NAME}
+        Boost::filesystem
+        Boost::regex
 )
 
 add_executable(
-  tests
-  ${CMAKE_CURRENT_SOURCE_DIR}/tests/test.cpp
+        ${PROJECT_NAME}Demo
+        ${CMAKE_CURRENT_SOURCE_DIR}/sources/main.cpp
+)
+target_link_libraries(
+        ${PROJECT_NAME}Demo
+        ${PROJECT_NAME}
+)
+
+
+add_executable(
+        tests
+        ${CMAKE_CURRENT_SOURCE_DIR}/tests/test.cpp
 )
 
 target_include_directories(
-  ${PROJECT_NAME}
-  PUBLIC
-  ${CMAKE_CURRENT_SOURCE_DIR}/include
+        ${PROJECT_NAME}
+        PUBLIC
+        ${CMAKE_CURRENT_SOURCE_DIR}/include
 )
 
 target_include_directories(
-  tests
-  PUBLIC
-  ${CMAKE_CURRENT_SOURCE_DIR}/include
-  ${GTEST_ROOT}/include
+        tests
+        PUBLIC
+        ${CMAKE_CURRENT_SOURCE_DIR}/include
+        ${GTEST_ROOT}/include
 )
 
 target_link_libraries(
-  tests
-  ${CMAKE_THREAD_LIBS_INIT}
-  GTest::gtest
-  GTest::main
-  ${PROJECT_NAME}
+        tests
+        ${CMAKE_THREAD_LIBS_INIT}
+        GTest::gtest
+        GTest::main
+        ${PROJECT_NAME}
 )
-message(WARNING ${CMAKE_THREAD_LIBS_INIT})
 
 enable_testing()
 add_test(NAME unit_tests COMMAND tests)
@@ -68,6 +84,7 @@ if (BUILD_COVERAGE)
   list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
   find_package(codecov)
   add_coverage(${PROJECT_NAME})
+  add_coverage(${PROJECT_NAME}Demo)
   add_coverage(tests)
   list(APPEND LCOV_REMOVE_PATTERNS "'${PROJECT_SOURCE_DIR}/tests/*'")
   coverage_evaluate()
