@@ -20,7 +20,7 @@ void printFinFile(const path &p,
     file.type = p.extension().string();
     if (file.balance == "balance_" && stoi(file.number) && file.separator == "_"
     && stoi(file.date) && file.type == ".txt"
-    && file.name.substr(25,4) != ".old") {
+    && file.name.substr(25, 4) != ".old") {
         std::cout << p.parent_path().string().substr(pz) + " " +
         p.filename().string() + '\n';
         if (accounts.find(file.number) == accounts.end()) {
