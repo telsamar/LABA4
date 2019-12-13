@@ -39,19 +39,19 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /home/maus/jetbrains/clion-2019.1.3/bin/cmake/linux/bin/cmake
+CMAKE_COMMAND = /cygdrive/c/Users/zamot/.CLion2019.2/system/cygwin_cmake/bin/cmake.exe
 
 # The command to remove a file.
-RM = /home/maus/jetbrains/clion-2019.1.3/bin/cmake/linux/bin/cmake -E remove -f
+RM = /cygdrive/c/Users/zamot/.CLion2019.2/system/cygwin_cmake/bin/cmake.exe -E remove -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/maus/homeworks/iu10/lab4/lab-04-boost-filesystem
+CMAKE_SOURCE_DIR = /cygdrive/c/Git/laba4
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/maus/homeworks/iu10/lab4/lab-04-boost-filesystem/cmake-build-debug
+CMAKE_BINARY_DIR = /cygdrive/c/Git/laba4/cmake-build-debug
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -59,7 +59,7 @@ CMAKE_BINARY_DIR = /home/maus/homeworks/iu10/lab4/lab-04-boost-filesystem/cmake-
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/home/maus/jetbrains/clion-2019.1.3/bin/cmake/linux/bin/cmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	/cygdrive/c/Users/zamot/.CLion2019.2/system/cygwin_cmake/bin/cmake.exe -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : rebuild_cache
 
 # Special rule for the target rebuild_cache
@@ -70,7 +70,7 @@ rebuild_cache/fast: rebuild_cache
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	/home/maus/jetbrains/clion-2019.1.3/bin/cmake/linux/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+	/cygdrive/c/Users/zamot/.CLion2019.2/system/cygwin_cmake/bin/cmake.exe -E echo No\ interactive\ CMake\ dialog\ available.
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -78,22 +78,11 @@ edit_cache/fast: edit_cache
 
 .PHONY : edit_cache/fast
 
-# Special rule for the target test
-test:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
-	/home/maus/jetbrains/clion-2019.1.3/bin/cmake/linux/bin/ctest --force-new-ctest-process $(ARGS)
-.PHONY : test
-
-# Special rule for the target test
-test/fast: test
-
-.PHONY : test/fast
-
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/maus/homeworks/iu10/lab4/lab-04-boost-filesystem/cmake-build-debug/CMakeFiles /home/maus/homeworks/iu10/lab4/lab-04-boost-filesystem/cmake-build-debug/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /cygdrive/c/Git/laba4/cmake-build-debug/CMakeFiles /cygdrive/c/Git/laba4/cmake-build-debug/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/maus/homeworks/iu10/lab4/lab-04-boost-filesystem/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /cygdrive/c/Git/laba4/cmake-build-debug/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -122,70 +111,57 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named tests
+# Target rules for targets named FTP
 
 # Build rule for target.
-tests: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 tests
-.PHONY : tests
+FTP: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 FTP
+.PHONY : FTP
 
 # fast build rule for target.
-tests/fast:
-	$(MAKE) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/build
-.PHONY : tests/fast
+FTP/fast:
+	$(MAKE) -f CMakeFiles/FTP.dir/build.make CMakeFiles/FTP.dir/build
+.PHONY : FTP/fast
 
 #=============================================================================
-# Target rules for targets named lab-04-boost-filesystem
+# Target rules for targets named main
 
 # Build rule for target.
-lab-04-boost-filesystem: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 lab-04-boost-filesystem
-.PHONY : lab-04-boost-filesystem
+main: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 main
+.PHONY : main
 
 # fast build rule for target.
-lab-04-boost-filesystem/fast:
-	$(MAKE) -f CMakeFiles/lab-04-boost-filesystem.dir/build.make CMakeFiles/lab-04-boost-filesystem.dir/build
-.PHONY : lab-04-boost-filesystem/fast
+main/fast:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/build
+.PHONY : main/fast
 
-#=============================================================================
-# Target rules for targets named lab-04-boost-filesystemDemo
+sources/FTPfiles.o: sources/FTPfiles.cpp.o
 
-# Build rule for target.
-lab-04-boost-filesystemDemo: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 lab-04-boost-filesystemDemo
-.PHONY : lab-04-boost-filesystemDemo
-
-# fast build rule for target.
-lab-04-boost-filesystemDemo/fast:
-	$(MAKE) -f CMakeFiles/lab-04-boost-filesystemDemo.dir/build.make CMakeFiles/lab-04-boost-filesystemDemo.dir/build
-.PHONY : lab-04-boost-filesystemDemo/fast
-
-sources/BrokerResolver.o: sources/BrokerResolver.cpp.o
-
-.PHONY : sources/BrokerResolver.o
+.PHONY : sources/FTPfiles.o
 
 # target to build an object file
-sources/BrokerResolver.cpp.o:
-	$(MAKE) -f CMakeFiles/lab-04-boost-filesystem.dir/build.make CMakeFiles/lab-04-boost-filesystem.dir/sources/BrokerResolver.cpp.o
-.PHONY : sources/BrokerResolver.cpp.o
+sources/FTPfiles.cpp.o:
+	$(MAKE) -f CMakeFiles/FTP.dir/build.make CMakeFiles/FTP.dir/sources/FTPfiles.cpp.o
+.PHONY : sources/FTPfiles.cpp.o
 
-sources/BrokerResolver.i: sources/BrokerResolver.cpp.i
+sources/FTPfiles.i: sources/FTPfiles.cpp.i
 
-.PHONY : sources/BrokerResolver.i
+.PHONY : sources/FTPfiles.i
 
 # target to preprocess a source file
-sources/BrokerResolver.cpp.i:
-	$(MAKE) -f CMakeFiles/lab-04-boost-filesystem.dir/build.make CMakeFiles/lab-04-boost-filesystem.dir/sources/BrokerResolver.cpp.i
-.PHONY : sources/BrokerResolver.cpp.i
+sources/FTPfiles.cpp.i:
+	$(MAKE) -f CMakeFiles/FTP.dir/build.make CMakeFiles/FTP.dir/sources/FTPfiles.cpp.i
+.PHONY : sources/FTPfiles.cpp.i
 
-sources/BrokerResolver.s: sources/BrokerResolver.cpp.s
+sources/FTPfiles.s: sources/FTPfiles.cpp.s
 
-.PHONY : sources/BrokerResolver.s
+.PHONY : sources/FTPfiles.s
 
 # target to generate assembly for a file
-sources/BrokerResolver.cpp.s:
-	$(MAKE) -f CMakeFiles/lab-04-boost-filesystem.dir/build.make CMakeFiles/lab-04-boost-filesystem.dir/sources/BrokerResolver.cpp.s
-.PHONY : sources/BrokerResolver.cpp.s
+sources/FTPfiles.cpp.s:
+	$(MAKE) -f CMakeFiles/FTP.dir/build.make CMakeFiles/FTP.dir/sources/FTPfiles.cpp.s
+.PHONY : sources/FTPfiles.cpp.s
 
 sources/main.o: sources/main.cpp.o
 
@@ -193,8 +169,7 @@ sources/main.o: sources/main.cpp.o
 
 # target to build an object file
 sources/main.cpp.o:
-	$(MAKE) -f CMakeFiles/lab-04-boost-filesystem.dir/build.make CMakeFiles/lab-04-boost-filesystem.dir/sources/main.cpp.o
-	$(MAKE) -f CMakeFiles/lab-04-boost-filesystemDemo.dir/build.make CMakeFiles/lab-04-boost-filesystemDemo.dir/sources/main.cpp.o
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/sources/main.cpp.o
 .PHONY : sources/main.cpp.o
 
 sources/main.i: sources/main.cpp.i
@@ -203,8 +178,7 @@ sources/main.i: sources/main.cpp.i
 
 # target to preprocess a source file
 sources/main.cpp.i:
-	$(MAKE) -f CMakeFiles/lab-04-boost-filesystem.dir/build.make CMakeFiles/lab-04-boost-filesystem.dir/sources/main.cpp.i
-	$(MAKE) -f CMakeFiles/lab-04-boost-filesystemDemo.dir/build.make CMakeFiles/lab-04-boost-filesystemDemo.dir/sources/main.cpp.i
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/sources/main.cpp.i
 .PHONY : sources/main.cpp.i
 
 sources/main.s: sources/main.cpp.s
@@ -213,36 +187,8 @@ sources/main.s: sources/main.cpp.s
 
 # target to generate assembly for a file
 sources/main.cpp.s:
-	$(MAKE) -f CMakeFiles/lab-04-boost-filesystem.dir/build.make CMakeFiles/lab-04-boost-filesystem.dir/sources/main.cpp.s
-	$(MAKE) -f CMakeFiles/lab-04-boost-filesystemDemo.dir/build.make CMakeFiles/lab-04-boost-filesystemDemo.dir/sources/main.cpp.s
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/sources/main.cpp.s
 .PHONY : sources/main.cpp.s
-
-tests/test.o: tests/test.cpp.o
-
-.PHONY : tests/test.o
-
-# target to build an object file
-tests/test.cpp.o:
-	$(MAKE) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/tests/test.cpp.o
-.PHONY : tests/test.cpp.o
-
-tests/test.i: tests/test.cpp.i
-
-.PHONY : tests/test.i
-
-# target to preprocess a source file
-tests/test.cpp.i:
-	$(MAKE) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/tests/test.cpp.i
-.PHONY : tests/test.cpp.i
-
-tests/test.s: tests/test.cpp.s
-
-.PHONY : tests/test.s
-
-# target to generate assembly for a file
-tests/test.cpp.s:
-	$(MAKE) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/tests/test.cpp.s
-.PHONY : tests/test.cpp.s
 
 # Help Target
 help:
@@ -251,20 +197,15 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... rebuild_cache"
+	@echo "... FTP"
 	@echo "... edit_cache"
-	@echo "... test"
-	@echo "... tests"
-	@echo "... lab-04-boost-filesystem"
-	@echo "... lab-04-boost-filesystemDemo"
-	@echo "... sources/BrokerResolver.o"
-	@echo "... sources/BrokerResolver.i"
-	@echo "... sources/BrokerResolver.s"
+	@echo "... main"
+	@echo "... sources/FTPfiles.o"
+	@echo "... sources/FTPfiles.i"
+	@echo "... sources/FTPfiles.s"
 	@echo "... sources/main.o"
 	@echo "... sources/main.i"
 	@echo "... sources/main.s"
-	@echo "... tests/test.o"
-	@echo "... tests/test.i"
-	@echo "... tests/test.s"
 .PHONY : help
 
 
