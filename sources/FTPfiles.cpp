@@ -1,4 +1,4 @@
-//Copyright 2019 <LinkIvan333>
+//Copyright 2019 <telsamar>
 #include "FTPfiles.h"
 string getLatestDate(const string &date1, const string &date2) {
     unsigned int d1 = stoi(date1);
@@ -82,7 +82,8 @@ void analyse(const path& p,
 void iterate(const path &pathToDir) {
     map<string, pair <unsigned int, string>> accounts;
     std::cout << std::endl;
-    for (const directory_entry& obj : recursive_directory_iterator(pathToDir)) {
+    for (const directory_entry& obj : recursive_directory_iterator(pathToDir))
+    {
         analyse(obj.path(), accounts);
     }
     printAccountsInfo(pathToDir, accounts);

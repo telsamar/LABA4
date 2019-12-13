@@ -21,7 +21,6 @@ set(CMAKE_C_COMPILER_AR "/usr/bin/gcc-ar.exe")
 set(CMAKE_RANLIB "/usr/bin/ranlib.exe")
 set(CMAKE_C_COMPILER_RANLIB "/usr/bin/gcc-ranlib.exe")
 set(CMAKE_LINKER "/usr/bin/ld.exe")
-set(CMAKE_MT "")
 set(CMAKE_COMPILER_IS_GNUCC 1)
 set(CMAKE_C_COMPILER_LOADED 1)
 set(CMAKE_C_COMPILER_WORKS TRUE)
@@ -69,7 +68,6 @@ endif()
 
 
 
-set(CMAKE_C_IMPLICIT_INCLUDE_DIRECTORIES "/usr/lib/gcc/x86_64-pc-cygwin/7.4.0/include;/usr/include;/usr/include/w32api")
 set(CMAKE_C_IMPLICIT_LINK_LIBRARIES "gcc_s;gcc;cygwin;advapi32;shell32;user32;kernel32;gcc_s;gcc")
 set(CMAKE_C_IMPLICIT_LINK_DIRECTORIES "/usr/lib/gcc/x86_64-pc-cygwin/7.4.0;/usr/x86_64-pc-cygwin/lib;/usr/lib;/lib")
 set(CMAKE_C_IMPLICIT_LINK_FRAMEWORK_DIRECTORIES "")

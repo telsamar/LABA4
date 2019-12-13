@@ -1,4 +1,4 @@
-//Copyright 2019 <LinkIvan333>
+//Copyright 2019 <telsamar>
 #include <boost/filesystem.hpp>
 #include <string>
 #include <iostream>
@@ -17,8 +17,8 @@ struct file{
     string date;
     string type;
 };
-static string mypath="D:\\Projects\\laba4\\ftp";
-static int pz=mypath.length()-4;
+static string mypath="C:\\универ\\GITHUB\\LABA4\\ftp";
+static int pz=mypath.length()+1;
 string getLatestDate(const string &date1, const string &date2);
 void printFinFile(const path &p, map<string, pair <unsigned int, string>>& accounts);
 void printAccountsInfo(const path &path_to_dir, map<string, pair <unsigned int, string>>& accounts);

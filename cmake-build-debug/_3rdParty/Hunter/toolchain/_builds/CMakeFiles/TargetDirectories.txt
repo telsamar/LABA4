@@ -1,2 +1,2 @@
-/cygdrive/c/Git/laba4/cmake-build-debug/_3rdParty/Hunter/toolchain/_builds/CMakeFiles/rebuild_cache.dir
-/cygdrive/c/Git/laba4/cmake-build-debug/_3rdParty/Hunter/toolchain/_builds/CMakeFiles/edit_cache.dir
+/cygdrive/c/универ/GITHUB/LABA4/cmake-build-debug/_3rdParty/Hunter/toolchain/_builds/CMakeFiles/rebuild_cache.dir
+/cygdrive/c/универ/GITHUB/LABA4/cmake-build-debug/_3rdParty/Hunter/toolchain/_builds/CMakeFiles/edit_cache.dir
