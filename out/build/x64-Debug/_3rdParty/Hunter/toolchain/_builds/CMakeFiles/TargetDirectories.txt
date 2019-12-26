@@ -1,0 +1,2 @@
+C:/универ/GITHUB/LABA4/out/build/x64-Debug/_3rdParty/Hunter/toolchain/_builds/CMakeFiles/edit_cache.dir
+C:/универ/GITHUB/LABA4/out/build/x64-Debug/_3rdParty/Hunter/toolchain/_builds/CMakeFiles/rebuild_cache.dir
