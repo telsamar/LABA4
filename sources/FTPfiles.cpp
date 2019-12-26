@@ -20,7 +20,7 @@ void printFinFile(const path &p,
         file.date = file.name.substr(17, 8);
         file.type = p.extension().string();
         if (file.balance == "balance_" && stoi(file.number) &&
-			file.separator == "_"
+            file.separator == "_"
             && stoi(file.date) && file.type == ".txt"
             && file.name.substr(25, 4) != ".old") {
             std::cout << p.parent_path().string().substr(pz) + " " +
@@ -41,7 +41,7 @@ void printAccountsInfo(const path &path_to_dir,
     for (const directory_entry& obj :
     recursive_directory_iterator(path_to_dir)) {
         if (is_regular_file(obj.path())
-			&& (obj.path().stem().string().length() >=25)) {
+            && (obj.path().stem().string().length() >=25)) {
             string name = obj.path().stem().string();
             string balance = name.substr(0, 8);
             string number = name.substr(8, 8);
