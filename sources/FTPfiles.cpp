@@ -1,5 +1,5 @@
 //Copyright 2019 <telsamar>
-#include "FTPfiles.h"
+#include "../include/FTPfiles.h"
 string getLatestDate(const string &date1, const string &date2) {
     unsigned int d1 = stoi(date1);
     unsigned int d2 = stoi(date2);
@@ -11,33 +11,36 @@ string getLatestDate(const string &date1, const string &date2) {
 
 void printFinFile(const path &p,
                   map<string, pair <unsigned int, string>>& accounts) {
-    file file;
-    file.name = p.stem().string();
-    file.balance = file.name.substr(0, 8);
-    file.number = file.name.substr(8, 8);
-    file.separator = file.name.substr(16, 1);
-    file.date = file.name.substr(17, 8);
-    file.type = p.extension().string();
-    if (file.balance == "balance_" && stoi(file.number) && file.separator == "_"
-    && stoi(file.date) && file.type == ".txt"
-    && file.name.substr(25, 4) != ".old") {
-        std::cout << p.parent_path().string().substr(pz) + " " +
-        p.filename().string() + '\n';
-        if (accounts.find(file.number) == accounts.end()) {
-            accounts[file.number] = pair<int, string>(1, file.date);
-        } else {
-            accounts[file.number].first++;
-            accounts[file.number].second =
-                    getLatestDate(file.date, accounts[file.number].second);
+    if (p.stem().string().length() >=25) {
+        file file;
+        file.name = p.stem().string();
+        file.balance = file.name.substr(0, 8);
+        file.number = file.name.substr(8, 8);
+        file.separator = file.name.substr(16, 1);
+        file.date = file.name.substr(17, 8);
+        file.type = p.extension().string();
+        if (file.balance == "balance_" && stoi(file.number) && file.separator == "_"
+            && stoi(file.date) && file.type == ".txt"
+            && file.name.substr(25, 4) != ".old") {
+            std::cout << p.parent_path().string().substr(pz) + " " +
+            p.filename().string() + '\n';
+            if (accounts.find(file.number) == accounts.end()) {
+                accounts[file.number] = pair<int, string>(1, file.date);
+            } else {
+                accounts[file.number].first++;
+                accounts[file.number].second =
+                getLatestDate(file.date, accounts[file.number].second);
+            }
         }
     }
 }
 
 void printAccountsInfo(const path &path_to_dir,
-                       map<string, pair <unsigned int, string>>& accounts) {
+    map<string, pair <unsigned int, string>>& accounts) {
     for (const directory_entry& obj :
     recursive_directory_iterator(path_to_dir)) {
-        if (is_regular_file(obj.path())) {
+        if (is_regular_file(obj.path())
+        && (obj.path().stem().string().length()>=25)) {
             string name = obj.path().stem().string();
             string balance = name.substr(0, 8);
             string number = name.substr(8, 8);
@@ -66,13 +69,13 @@ void analyse(const path& p,
             printFinFile(p, accounts);
         } else if (is_directory(p)) {
             std::cout << p.string().substr(pz) <<
-                      " - директория, содержащая:\n";
+             " - директория, содержащая:\n";
         } else if (is_symlink(p)) {
             analyse(read_symlink(p), accounts);
         } else {
             std::cout << p <<
-                      "существует, но не является директорией "
-                      "или нужным файлом\n";
+             "существует, но не является директорией "
+              "или нужным файлом\n";
         }
     } else {
         std::cout << p << "не существует\n";

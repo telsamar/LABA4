@@ -1,13 +1,213 @@
 C:\cygwin64\bin\cmake.exe -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /cygdrive/c/универ/GITHUB/LABA4
-CMake Error at CMakeLists.txt:13 (include):
-  include could not find load file:
+-- The C compiler identification is GNU 7.4.0
+-- The CXX compiler identification is GNU 7.4.0
+-- Check for working C compiler: /usr/bin/cc
+-- Check for working C compiler: /usr/bin/cc -- works
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Check for working CXX compiler: /usr/bin/c++.exe
+-- Check for working CXX compiler: /usr/bin/c++.exe -- works
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- [hunter] Calculating Toolchain-SHA1
+-- [hunter] Calculating Config-SHA1
+-- [hunter] HUNTER_ROOT: /home/РђРЅР°С‚РѕР»РёР№/.hunter
+-- [hunter] [ Hunter-ID: 9a3594a | Toolchain-ID: 0a1854b | Config-ID: c351cc1 ]
+-- [hunter] BOOST_ROOT: /home/РђРЅР°С‚РѕР»РёР№/.hunter/_Base/9a3594a/0a1854b/c351cc1/Install (ver.: 1.70.0-p0)
+-- [hunter] BOOST_ROOT: /home/РђРЅР°С‚РѕР»РёР№/.hunter/_Base/9a3594a/0a1854b/c351cc1/Install (ver.: 1.70.0-p0)
+-- [hunter] BOOST_ROOT: /home/РђРЅР°С‚РѕР»РёР№/.hunter/_Base/9a3594a/0a1854b/c351cc1/Install (ver.: 1.70.0-p0)
+-- [hunter] Building Boost (component: filesystem)
+loading initial cache file /home/РђРЅР°С‚РѕР»РёР№/.hunter/_Base/9a3594a/0a1854b/c351cc1/cache.cmake
+loading initial cache file /home/РђРЅР°С‚РѕР»РёР№/.hunter/_Base/9a3594a/0a1854b/c351cc1/Build/Boost/__filesystem/args.cmake
+-- The C compiler identification is GNU 7.4.0
+-- The CXX compiler identification is GNU 7.4.0
+-- Check for working C compiler: /usr/bin/cc
+-- Check for working C compiler: /usr/bin/cc -- works
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Check for working CXX compiler: /usr/bin/c++.exe
+-- Check for working CXX compiler: /usr/bin/c++.exe -- works
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/РђРЅР°С‚РѕР»РёР№/.hunter/_Base/9a3594a/0a1854b/c351cc1/Build/Boost/__filesystem/Build
+Scanning dependencies of target Boost-filesystem
+[ 12%] Creating directories for 'Boost-filesystem'
+[ 25%] Performing download step (download, verify and extract) for 'Boost-filesystem'
+-- verifying file...
+       file='/home/РђРЅР°С‚РѕР»РёР№/.hunter/_Base/Download/Boost/1.70.0-p0/e6bb97b/v1.70.0-p0.tar.gz'
+-- File already exists and hash match (skip download):
+  file='/home/РђРЅР°С‚РѕР»РёР№/.hunter/_Base/Download/Boost/1.70.0-p0/e6bb97b/v1.70.0-p0.tar.gz'
+  SHA1='e6bb97b5109c7c15ea459cf2b1a9d52cbf88a89e'
+-- extracting...
+     src='/home/РђРЅР°С‚РѕР»РёР№/.hunter/_Base/Download/Boost/1.70.0-p0/e6bb97b/v1.70.0-p0.tar.gz'
+     dst='/home/РђРЅР°С‚РѕР»РёР№/.hunter/_Base/9a3594a/0a1854b/c351cc1/Build/Boost/__filesystem/Source'
+-- extracting... [tar xfz]
+-- extracting... [analysis]
+-- extracting... [rename]
+-- extracting... [clean up]
+-- extracting... done
+[ 37%] No patch step for 'Boost-filesystem'
+[ 50%] Performing update step for 'Boost-filesystem'
+[ 62%] Performing configure step for 'Boost-filesystem'
+Dummy patch command
+Building Boost.Build engine with toolset gcc... tools/build/src/engine/bin.cygwinx86_64/b2
+Detecting Python version... 2.7
+Detecting Python root... /usr
+Unicode/ICU support for Boost.Regex?... not found.
+Generating Boost.Build configuration in project-config.jam for gcc...
 
-    cmake/HunterGate.cmake
+Bootstrapping is done. To build, run:
+
+    ./b2
+    
+To generate header files, run:
+
+    ./b2 headers
+
+To adjust configuration, edit 'project-config.jam'.
+Further information:
+
+   - Command line help:
+     ./b2 --help
+     
+   - Getting started guide: 
+     http://www.boost.org/more/getting_started/unix-variants.html
+     
+   - Boost.Build documentation:
+     http://www.boost.org/build/
+
+[ 75%] Performing build step for 'Boost-filesystem'
+Performing configuration checks
+
+    - default address-model    : 64-bit
+    - default architecture     : x86
+
+Building the Boost C++ Libraries.
 
 
-CMake Error at CMakeLists.txt:15 (HunterGate):
-  Unknown CMake command "HunterGate".
+
+Component configuration:
+
+    - atomic                   : not building
+    - chrono                   : not building
+    - container                : not building
+    - context                  : not building
+    - contract                 : not building
+    - coroutine                : not building
+    - date_time                : not building
+    - exception                : not building
+    - fiber                    : not building
+    - filesystem               : building
+    - graph                    : not building
+    - graph_parallel           : not building
+    - headers                  : not building
+    - iostreams                : not building
+    - locale                   : not building
+    - log                      : not building
+    - math                     : not building
+    - mpi                      : not building
+    - program_options          : not building
+    - python                   : not building
+    - random                   : not building
+    - regex                    : not building
+    - serialization            : not building
+    - stacktrace               : not building
+    - system                   : not building
+    - test                     : not building
+    - thread                   : not building
+    - timer                    : not building
+    - type_erasure             : not building
+    - wave                     : not building
+
+...patience...
+...found 567 targets...
+...updating 37 targets...
+gcc.compile.c++ bin.v2/libs/filesystem/build/gcc-7.4.0/debug/link-static/threading-multi/visibility-hidden/utf8_codecvt_facet.o
+gcc.compile.c++ bin.v2/libs/filesystem/build/gcc-7.4.0/debug/link-static/threading-multi/visibility-hidden/codecvt_error_category.o
+gcc.compile.c++ bin.v2/libs/filesystem/build/gcc-7.4.0/debug/link-static/threading-multi/visibility-hidden/portability.o
+gcc.compile.c++ bin.v2/libs/filesystem/build/gcc-7.4.0/debug/link-static/threading-multi/visibility-hidden/path_traits.o
+gcc.compile.c++ bin.v2/libs/filesystem/build/gcc-7.4.0/release/link-static/threading-multi/visibility-hidden/codecvt_error_category.o
+gcc.compile.c++ bin.v2/libs/filesystem/build/gcc-7.4.0/release/link-static/threading-multi/visibility-hidden/path_traits.o
+gcc.compile.c++ bin.v2/libs/filesystem/build/gcc-7.4.0/release/link-static/threading-multi/visibility-hidden/portability.o
+gcc.compile.c++ bin.v2/libs/filesystem/build/gcc-7.4.0/release/link-static/threading-multi/visibility-hidden/utf8_codecvt_facet.o
+gcc.compile.c++ bin.v2/libs/filesystem/build/gcc-7.4.0/debug/link-static/threading-multi/visibility-hidden/windows_file_codecvt.o
+gcc.compile.c++ bin.v2/libs/filesystem/build/gcc-7.4.0/release/link-static/threading-multi/visibility-hidden/windows_file_codecvt.o
+gcc.compile.c++ bin.v2/libs/filesystem/build/gcc-7.4.0/release/link-static/threading-multi/visibility-hidden/unique_path.o
+gcc.compile.c++ bin.v2/libs/filesystem/build/gcc-7.4.0/debug/link-static/threading-multi/visibility-hidden/unique_path.o
+gcc.compile.c++ bin.v2/libs/filesystem/build/gcc-7.4.0/debug/link-static/threading-multi/visibility-hidden/path.o
+gcc.compile.c++ bin.v2/libs/filesystem/build/gcc-7.4.0/debug/link-static/threading-multi/visibility-hidden/operations.o
+gcc.compile.c++ bin.v2/libs/filesystem/build/gcc-7.4.0/release/link-static/threading-multi/visibility-hidden/path.o
+gcc.compile.c++ bin.v2/libs/filesystem/build/gcc-7.4.0/release/link-static/threading-multi/visibility-hidden/operations.o
+gcc.archive bin.v2/libs/filesystem/build/gcc-7.4.0/release/link-static/threading-multi/visibility-hidden/libboost_filesystem-mt-x64.a
+common.copy /home/РђРЅР°С‚РѕР»РёР№/.hunter/_Base/9a3594a/0a1854b/c351cc1/Build/Boost/__filesystem/Source/stage/lib/libboost_filesystem-mt-x64.a
+gcc.archive bin.v2/libs/filesystem/build/gcc-7.4.0/debug/link-static/threading-multi/visibility-hidden/libboost_filesystem-mt-d-x64.a
+common.copy /home/РђРЅР°С‚РѕР»РёР№/.hunter/_Base/9a3594a/0a1854b/c351cc1/Build/Boost/__filesystem/Source/stage/lib/libboost_filesystem-mt-d-x64.a
+...updated 37 targets...
 
 
--- Configuring incomplete, errors occurred!
-See also "/cygdrive/c/СѓРЅРёРІРµСЂ/GITHUB/LABA4/cmake-build-debug/CMakeFiles/CMakeOutput.log".
+The Boost C++ Libraries were successfully built!
+
+The following directory should be added to compiler include paths:
+
+    /home/РђРЅР°С‚РѕР»РёР№/.hunter/_Base/9a3594a/0a1854b/c351cc1/Build/Boost/__filesystem/Source
+
+The following directory should be added to linker library paths:
+
+    /home/РђРЅР°С‚РѕР»РёР№/.hunter/_Base/9a3594a/0a1854b/c351cc1/Build/Boost/__filesystem/Source/stage/lib
+
+[ 87%] Performing install step for 'Boost-filesystem'
+Performing configuration checks
+
+    - default address-model    : 64-bit
+    - default architecture     : x86
+
+Component configuration:
+
+    - atomic                   : not building
+    - chrono                   : not building
+    - container                : not building
+    - context                  : not building
+    - contract                 : not building
+    - coroutine                : not building
+    - date_time                : not building
+    - exception                : not building
+    - fiber                    : not building
+    - filesystem               : building
+    - graph                    : not building
+    - graph_parallel           : not building
+    - headers                  : not building
+    - iostreams                : not building
+    - locale                   : not building
+    - log                      : not building
+    - math                     : not building
+    - mpi                      : not building
+    - program_options          : not building
+    - python                   : not building
+    - random                   : not building
+    - regex                    : not building
+    - serialization            : not building
+    - stacktrace               : not building
+    - system                   : not building
+    - test                     : not building
+    - thread                   : not building
+    - timer                    : not building
+    - type_erasure             : not building
+    - wave                     : not building
+
+[100%] Completed 'Boost-filesystem'
+[100%] Built target Boost-filesystem
+-- [hunter] Build step successful (dir: /home/РђРЅР°С‚РѕР»РёР№/.hunter/_Base/9a3594a/0a1854b/c351cc1/Build/Boost/__filesystem)
+-- [hunter] Cache saved: /home/РђРЅР°С‚РѕР»РёР№/.hunter/_Base/Cache/raw/d29743dd870d3ca8a5aa4a0fe952786ed5ad4e08.tar.bz2
+-- Boost version: 1.70.0
+-- Found the following Boost libraries:
+--   system
+--   filesystem
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /cygdrive/c/СѓРЅРёРІРµСЂ/GITHUB/LABA4/cmake-build-debug

@@ -17,7 +17,7 @@ struct file{
     string date;
     string type;
 };
-static string mypath="C:\\универ\\GITHUB\\LABA4\\ftp";
+static string mypath="C:\\универ\\GITHUB\\LABA4\\misc\\ftp";
 static int pz=mypath.length()+1;
 string getLatestDate(const string &date1, const string &date2);
 void printFinFile(const path &p, map<string, pair <unsigned int, string>>& accounts);
